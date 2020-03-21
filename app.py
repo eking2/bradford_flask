@@ -29,6 +29,10 @@ class UploadForm(FlaskForm):
 @app.route('/', methods=['POST', 'GET'])
 def home():
 
+    # make folders
+    if not app.config['TMP'].exists():
+        app.config['TMP'].mkdir()
+
     # delete leftover files 
     to_delete = Path('tmp').iterdir()
     for fn in to_delete:
