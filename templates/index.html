@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Bradford Calculator{% endblock %}
+
+{% block content %}
+  <h1>Upload bradford assay data</h1>
+  <br>
+
+  <form action="" method="post" enctype="multipart/form-data">
+
+      {{ form.hidden_tag() }}
+
+      {% for error in form.csv.errors %}
+        <p>
+        <span style="color: red;"> {{ error }} </span>
+        </p>
+      {% endfor %}
+
+      {% for error in form.poly.errors %}
+        <p>
+        <span style="color: red;"> {{ error }} </span>
+        </p>
+      {% endfor %}
+
+      <p> {{ form.csv }} </p>
+
+      <p> {{ form.poly.label }} {{ form.poly }} </p>
+
+      <p> {{ form.submit }} </p>
+
+  </form>
+
+  <br>
+  <br>
+
+  <h2>Example input and output files</h2>
+  <p><a href={{ url_for('static', filename='bradford.csv') }}>Input data in csv format</a></p>
+  <p><a href={{ url_for('static', filename='bradford_concs.csv') }}>Output concentrations</a></p>
+  <p><a href={{ url_for('static', filename='bradford_std_curve.png') }}>Output standard curve</a></p>
+
+{% endblock %}
