@@ -33,7 +33,7 @@ def home():
     if not app.config['TMP'].exists():
         app.config['TMP'].mkdir()
 
-    # delete leftover files 
+    # delete leftover files
     to_delete = Path('tmp').iterdir()
     for fn in to_delete:
         fn.unlink()
@@ -63,10 +63,13 @@ def home():
 def results():
 
     fn = session.pop('fn', None)
-    
+
     if fn:
         df = pd.read_csv(f'{app.config["TMP"]}/{fn}_concs.csv')
-        return render_template('results.html', fn=fn, df=df.to_html())
+        return render_template('results.html', fn=fn, df=df.to_html(index = False,
+            col_space=150,
+            justify='left',
+            classes=['table-bordered', 'table-striped', 'table-hover']))
     else:
         # prevent users from accessing results without submitting
         return 'No results'
@@ -79,4 +82,4 @@ def download_file(filename):
 
 if __name__ == '__main__':
 
-    app.run()
+    app.run(debug=True)

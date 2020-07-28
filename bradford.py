@@ -121,7 +121,12 @@ class bradford_calc:
         grp = grp.rename(columns={'mean' : 'conc_mg_ml'})
         grp['after_glycerol_mg_ml'] = grp['conc_mg_ml']*0.6
 
-        # save
+        # clean up column names and save
+        grp = grp.rename(columns = {'conc_mg_ml' : 'Conc (mg/ml)',
+                                    'std' : 'STDEV',
+                                    'stderr' : '% Standard Error',
+                                    'after_glycerol_mg_ml' : 'Conc with 20% glycerol (mg/ml)'})
+
         grp.round(2).to_csv(Path(cwd, 'tmp', f'{self.filename}_concs.csv'), index=False)
 
         return grp.round(2)

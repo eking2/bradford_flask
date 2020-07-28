@@ -30,3 +30,5 @@ Temporary Items
 # ignore notebook checkpoints
 .ipynb_checkpoints
 **/*.ipynb_checkpoints/
+__pycache__
+tmp
