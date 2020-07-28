@@ -95,7 +95,7 @@ class bradford_calc:
 
         plt.text(0.05, 0.8, annotation_str, transform=ax.transAxes, fontsize='large')
         plt.xlabel('OD595')
-        plt.ylabel('Concentration (ug/uL)')
+        plt.ylabel('Concentration (ug/mL)')
         plt.title('Bradford Assay Standard Curve')
 
         plt.savefig(Path(cwd, 'tmp', f'{self.filename}_std_curve.png'), bbox_inches='tight', dpi=300)
